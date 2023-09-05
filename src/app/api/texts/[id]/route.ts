@@ -1,9 +1,14 @@
 import { NextResponse } from 'next/server'
 import pool from '@/lib/db'
+import { isRowId } from '@/lib/RowIdChecker'
 
+export async function GET(request:Request, {params}:{params:{id:string}}) {
 
-export async function GET( request:Request ) {
+    const rowId = isRowId(params.id)
 
+    if(!rowId)  return  NextResponse.json({ status:false })
+
+    
 
     try {
     
@@ -11,8 +16,9 @@ export async function GET( request:Request ) {
     
         if(!db) return  NextResponse.json({ status:false })
 
-        const data = await db.all('select id, text from texts')
+        const data = await db.get(`select id, text from texts where id = ${rowId}`).then( data => data === undefined ? data = {} : data )
 
+        
         console.log(data)
 
         return NextResponse.json({ status:true, data })  
