@@ -4,10 +4,11 @@ import pool from '@/lib/db'
 
 export async function GET( request:Request ) {
 
+    let db
 
     try {
     
-        const db = await pool.acquire()
+        db = await pool.acquire()
     
         if(!db) return  NextResponse.json({ status:false })
 
@@ -23,6 +24,10 @@ export async function GET( request:Request ) {
 
         return  NextResponse.json({ status:false })
 
+    } finally{
+        
+        pool.release(db!)
+        
     }
       
 }

@@ -8,11 +8,11 @@ export async function GET(request:Request, {params}:{params:{id:string}}) {
 
     if(!rowId)  return  NextResponse.json({ status:false })
 
-    
+    let db    
 
     try {
     
-        const db = await pool.acquire()
+        db = await pool.acquire()
     
         if(!db) return  NextResponse.json({ status:false })
 
@@ -29,6 +29,10 @@ export async function GET(request:Request, {params}:{params:{id:string}}) {
 
         return  NextResponse.json({ status:false })
 
+    } finally{
+        
+        pool.release(db!)
+        
     }
       
 }
