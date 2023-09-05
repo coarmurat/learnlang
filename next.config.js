@@ -1,9 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-    env:{
-        DB_NAME: 'x.db',
-        DB_DIR:'src/db'
-    }
-}
+const nextConfig = {}
 
 module.exports = nextConfig
