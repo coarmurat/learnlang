@@ -1,8 +1,20 @@
 import { NextResponse } from 'next/server'
 import pool from '@/lib/db'
+import { isRowId as isPageNumber } from '@/lib/RowIdChecker'
 
+export async function GET(request:Request) {
 
-export async function GET() {
+    const { searchParams } = new URL(request.url)
+    
+    const offset = searchParams.get('page')
+    
+    let queryString = `select id, text from texts`
+
+    if(offset && isPageNumber(offset)){
+     
+        queryString += ` LIMIT ${8} OFFSET ${ (parseInt(offset) - 1) * 8 }`
+
+    }        
 
     let db
 
@@ -12,16 +24,12 @@ export async function GET() {
     
         if(!db) return  NextResponse.json({ status:false })
 
-        const data = await db.all('select id, text from texts')
-
-        console.log(data)
+        const data = await db.all(queryString)
 
         return NextResponse.json({ status:true, data })  
 
     } catch (err) {
         
-        console.log(err)
-
         return  NextResponse.json({ status:false })
 
     } finally{
@@ -53,8 +61,6 @@ export async function POST( request:Request ){
         if(result.changes !== 1) return NextResponse.json({ status:false })
 
     } catch (err) {
-        
-        console.log(err)
 
         return  NextResponse.json({ status:false })
 
