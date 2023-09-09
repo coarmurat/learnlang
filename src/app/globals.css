@@ -1,3 +1,15 @@
+:root{
+  
+  --purple: #7966FF;
+  --gray: #F0EEFB;
+  --white: #FFF;
+  --blue:#0094FF;
+  --passive: #ABABAB;
+}
+
 body{
+  background-color: var(--gray);
+  display: flex;
+  flex-direction: column;
   margin: 0;
 }
