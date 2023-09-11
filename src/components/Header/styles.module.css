@@ -54,6 +54,7 @@
     font-size: 16px;
     font-weight: 700;
     letter-spacing: 0.96px;    
+    user-select: none;
 }
 .logo{
     display: flex;
@@ -91,6 +92,8 @@
     padding: 16px 24px;
     padding-left: 20px;
     align-items: center;
+    
+    cursor: default;
 }
 .nav a:hover , .nav a:focus{
     background-color: var(--white);
