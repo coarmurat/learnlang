@@ -1,12 +1,16 @@
 "use client"
 
+
 import styles from './styles.module.css'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import useTitle from '@/hooks/useTitle'
 
 export default function Header() {
     
     const [isNavShowing, setIsNavShowing] = useState(false)
+    
+    const title = useTitle()
 
     const toggleNavMenu = () => {
         
@@ -38,12 +42,12 @@ export default function Header() {
                     <div></div>
                     <div></div>
                 </button>
-                <div className={styles.pageIndicator}>Layout</div>
+                <div className={styles.pageIndicator}>{title}</div>
                 <div className={styles.logo}></div>
                 <nav className={`${styles.nav} ${isNavShowing?styles.showNav:''}`}>
                     <ul>
-                        <li><Link href=''>Text List</Link></li>
-                        <li><Link href=''>Training</Link></li>
+                        <li><Link href='/'>Text List</Link></li>
+                        <li><Link href='/practice'>Practice</Link></li>
                         <li><Link href=''>Manage Texts</Link></li>
                         <li><Link href=''>How Works</Link></li>
                     </ul>
