@@ -2,7 +2,7 @@
 
 import styles from './styles.module.css'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function Header() {
     
@@ -13,6 +13,22 @@ export default function Header() {
         setIsNavShowing((previous)=> !previous)
 
     }
+
+    useEffect(() => {
+
+        const bodyDOMElement:HTMLBodyElement = document.getElementsByTagName('body')[0]
+
+        if(isNavShowing){ 
+            
+            bodyDOMElement.style.overflow ='hidden'
+
+        }else{
+
+            bodyDOMElement.style.overflow =''
+
+        }
+
+    },[isNavShowing])
 
     return(
         <header className={styles.root}>
