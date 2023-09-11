@@ -1,14 +1,9 @@
 import './globals.css'
-import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Header from '@/components/Header'
 
-const inter = Inter({ subsets: ['latin'], display:'fallback' })
+const inter = Inter({ subsets: ['latin'], display:'optional' })
 
-export const metadata: Metadata = {
-  title: 'Learn Lang',
-  description: '',
-}
 
 export default function RootLayout({
   children,
