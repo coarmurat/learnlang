@@ -49,8 +49,8 @@ export default function Header() {
                         <li><Link href='/'>Landing Page</Link></li>
                         <li><Link href='/textlist'>Text List</Link></li>
                         <li><Link href='/practice'>Practice</Link></li>
-                        <li><Link href=''>Manage Texts</Link></li>
-                        <li><Link href=''>How Works</Link></li>
+                        <li><Link href='/managetexts/add'>Manage Texts</Link></li>
+                        <li><Link href='/howworks'>How Works</Link></li>
                     </ul>
                 </nav>
             </div>
