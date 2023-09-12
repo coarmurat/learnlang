@@ -46,7 +46,8 @@ export default function Header() {
                 <div className={styles.logo}></div>
                 <nav className={`${styles.nav} ${isNavShowing?styles.showNav:''}`}>
                     <ul>
-                        <li><Link href='/'>Text List</Link></li>
+                        <li><Link href='/'>Landing Page</Link></li>
+                        <li><Link href='/textlist'>Text List</Link></li>
                         <li><Link href='/practice'>Practice</Link></li>
                         <li><Link href=''>Manage Texts</Link></li>
                         <li><Link href=''>How Works</Link></li>
