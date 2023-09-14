@@ -1,7 +1,7 @@
 import styles from './page.module.css'
 
 import type { Metadata } from 'next'
-
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Landing Page',
@@ -12,6 +12,10 @@ export default function Home() {
 
 
   return (
-    <div className={styles.root}>Landing Page</div>
+    <div className={styles.root}>
+      <h1>Landing Page</h1>
+      <Link href='/login'>Login</Link>
+      <Link href='/howworks'>How works</Link>
+    </div>
   )
 }

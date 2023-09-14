@@ -1,18 +1,19 @@
 "use client"
 
-import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 
 export default function useTitle() {
     
-    const [title, setTitle] = useState(() => '')
     const pathname = usePathname()
 
-    useEffect(() => {
-        
-        setTitle(() => document.title)
 
-    },[pathname])
-
-    return title
+    return  pathname === '/'                             ? 'Landing Page' : 
+            pathname === '/login'                        ? 'Login' : 
+            pathname === '/textlist'                     ? 'Text List' : 
+            pathname === '/practice'                     ? 'Practice' : 
+            pathname === '/managetexts'                  ? 'Manage Texts' : 
+            pathname === '/managetexts/add'              ? 'Manage Texts' : 
+            pathname === '/managetexts/deleteupdate'     ? 'Manage Texts' : 
+            pathname === '/howworks'                     ? 'How Works' :''
+                                
 }
