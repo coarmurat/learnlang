@@ -26,6 +26,7 @@
     align-items: center;
     gap: 12px;
     flex: 1;
+    cursor: default;
 }
 .wrapper a div{
     display: flex;
