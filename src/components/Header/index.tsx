@@ -4,13 +4,13 @@
 import styles from './styles.module.css'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import useTitle from '@/hooks/useTitle'
+import usePageTitle from '@/hooks/usePageTitle'
 
 export default function Header() {
     
     const [isNavShowing, setIsNavShowing] = useState(false)
     
-    const title = useTitle()
+    const pageTitle = usePageTitle()
 
     const toggleNavMenu = () => {
         
@@ -42,13 +42,12 @@ export default function Header() {
                     <div></div>
                     <div></div>
                 </button>
-                <div className={styles.pageIndicator}>{title}</div>
+                <div className={styles.pageIndicator}>{pageTitle}</div>
                 <div className={styles.logo}></div>
                 <nav className={`${styles.nav} ${isNavShowing?styles.showNav:''}`}>
                     <ul>
                         <li><Link href='/'>Landing Page</Link></li>
                         <li><Link href='/textlist'>Text List</Link></li>
-                        <li><Link href='/practice'>Practice</Link></li>
                         <li><Link href='/managetexts/add'>Manage Texts</Link></li>
                         <li><Link href='/howworks'>How Works</Link></li>
                     </ul>

@@ -1,0 +1,37 @@
+.root{
+  font-size: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  user-select: none;
+}
+.translatedTextWrapper{
+  display: flex;
+  flex: 1;
+  padding: 12px;
+  align-content: flex-start;
+  padding: 12px;
+  overflow-y: auto;
+}
+.splitResizer{
+  background-color: #ccc;
+  display: flex;
+  flex: 0 0 30px;
+}
+.textWrapper{
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 0;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-content: flex-start;
+  padding: 12px;
+  overflow-y: auto;
+}
+.textWrapper div{
+  display: flex;
+  font-weight: bold;
+  filter: blur(4px);
+  
+}

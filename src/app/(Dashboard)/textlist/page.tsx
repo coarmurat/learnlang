@@ -1,43 +1,36 @@
-import styles from './page.module.css'
-import Link from 'next/link'
-import type { Metadata } from 'next'
+"use client"
 
+import styles from './page.module.css'
+import type { Metadata } from 'next'
+import useList from '@/hooks/useList'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Text List',
   description: '',
 }
 
-export default function Home() {
+export default function TextList() {
 
+  const { list, isLoading } = useList()
 
+  if(isLoading){
+    
+    return 'Loading...'
+  }
+  
   return (
     <div className={styles.listWrapper}>
       <ul className={styles.textList}>
-        <li>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia earum a ipsum ea tempora harum debitis distinctio voluptatem suscipit, dolorem nemo quam doloribus? Hic incidunt nihil voluptas itaque est. Qui.</p>
-        </li>
-        <li>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia earum a ipsum ea tempora harum debitis distinctio voluptatem suscipit, dolorem nemo quam doloribus? Hic incidunt nihil voluptas itaque est. Qui.</p>
-        </li>
-        <li>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia earum a ipsum ea tempora harum debitis distinctio voluptatem suscipit, dolorem nemo quam doloribus? Hic incidunt nihil voluptas itaque est. Qui.</p>
-        </li>
-        <li>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia earum a ipsum ea tempora harum debitis distinctio voluptatem suscipit, dolorem nemo quam doloribus? Hic incidunt nihil voluptas itaque est. Qui.</p>
-        </li>
-        <li>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia earum a ipsum ea tempora harum debitis distinctio voluptatem suscipit, dolorem nemo quam doloribus? Hic incidunt nihil voluptas itaque est. Qui.</p>
-        </li>
-        <li>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia earum a ipsum ea tempora harum debitis distinctio voluptatem suscipit, dolorem nemo quam doloribus? Hic incidunt nihil voluptas itaque est. Qui.</p>
-        </li>
-        <li>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia earum a ipsum ea tempora harum debitis distinctio voluptatem suscipit, dolorem nemo quam doloribus? Hic incidunt nihil voluptas itaque est. Qui.</p>
-        </li>
-        <li>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia earum a ipsum ea tempora harum debitis distinctio voluptatem suscipit, dolorem nemo quam doloribus? Hic incidunt nihil voluptas itaque est. Qui.</p>
-        </li>        
+        { 
+          list.data.map((row:any) => (
+            
+            <li key={row.id}>
+              <Link href={`/practice?id=${row.id}`}>{row.title}</Link>
+            </li>
+            
+          ))
+        }
       </ul>
     </div>
   )

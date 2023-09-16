@@ -16,10 +16,9 @@ export async function GET(request:Request,{ params }:{params:{id:string} }) {
     
         if(!db) return  NextResponse.json({ status:false })
 
-        const data = await db.get(`select id, text from texts where id = ${rowId}`).then( data => data === undefined ? data = {} : data )
+        const data = await db.get(`select id, text, translatedText from texts where id = ${rowId}`).then( data => data === undefined ? data = {} : data )
 
         
-        console.log(data)
 
         return NextResponse.json({ status:true, data })  
 
@@ -54,8 +53,6 @@ export async function DELETE(request:Request,{ params }:{params:{id:string} }) {
         const result = await db.get(`delete from texts where id = ${rowId}`).then( (res:any) => res === undefined ? res = {} : res )
 
         
-        console.log(result)
-
         return NextResponse.json({ status:true, rowId })  
 
     } catch (err) {
@@ -94,7 +91,6 @@ export async function PUT(request:Request,{ params }:{params:{id:string} }) {
         
         const result = await stmt.run(data.text, rowId)
 
-        console.log(result)
 
         if(result.changes !== 1) return NextResponse.json({ status:false })
 
