@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: '',
 }
 
-export default function Home() {
+export default function LandingPage() {
 
 
   return (

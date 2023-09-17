@@ -4,6 +4,9 @@
   flex-direction: column;
   flex: 1;
   user-select: none;
+  background-color: #242424;
+  color: #fff;
+  letter-spacing: 2.3px;
 }
 .translatedTextWrapper{
   display: flex;
@@ -14,7 +17,7 @@
   overflow-y: auto;
 }
 .splitResizer{
-  background-color: #ccc;
+  background-color: #545454;
   display: flex;
   flex: 0 0 30px;
 }
@@ -32,6 +35,4 @@
 .textWrapper div{
   display: flex;
   font-weight: bold;
-  filter: blur(4px);
-  
 }

@@ -1,14 +1,7 @@
-"use client"
+import DeleteUpdate from "./deleteUpdate"
 
-import styles from './styles.module.css'
-
-
-export default function ManageButtons() {
+export default function DeleteUpdatePage() {
 
 
-    return(
-        <div className={styles.root}>
-            delete/update
-        </div>
-    )
+    return <DeleteUpdate/>
 }
