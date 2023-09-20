@@ -1,12 +1,8 @@
 import { NextResponse } from 'next/server'
 import pool from '@/lib/db'
-import { isRowId as isPageNumber } from '@/lib/RowIdChecker'
 
+//Get 
 export async function GET(request:Request) {
-
-    const { searchParams } = new URL(request.url)
-    
-    const offset = searchParams.get('page')
         
     let db
 
@@ -39,7 +35,7 @@ export async function POST( request:Request ){
     if(!data || !data.title || !data.translatedText || !data.text) return NextResponse.json({ status:false })
 
     let db
-
+    let lastID
     try {
         
         db = await pool.acquire()
@@ -49,8 +45,12 @@ export async function POST( request:Request ){
         const stmt = await db.prepare('insert into texts (title,translatedText,text) values(?,?,?)')
         
         const result = await stmt.run([data.title,data.translatedText,data.text])
-
+        
+        stmt.finalize()
+        
         if(result.changes !== 1) return NextResponse.json({ status:false })
+        
+        lastID = result.lastID
 
     } catch (err) {
 
@@ -62,6 +62,6 @@ export async function POST( request:Request ){
         
     }
 
-    return NextResponse.json({ status:true })
+    return NextResponse.json({ status:true, id:lastID, title:data.title })
 
 }

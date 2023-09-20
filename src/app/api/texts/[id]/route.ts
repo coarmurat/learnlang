@@ -77,7 +77,7 @@ export async function PUT(request:Request,{ params }:{params:{id:string} }) {
 
     const data = await request.json().catch( err => false )
 
-    if(!data || !data.text) return NextResponse.json({ status:false })
+    if(!data || !data.title || !data.text || !data.translatedText) return NextResponse.json({ status:false })
 
     let db        
     
@@ -87,14 +87,15 @@ export async function PUT(request:Request,{ params }:{params:{id:string} }) {
     
         if(!db) return  NextResponse.json({ status:false })
 
-        const stmt = await db.prepare('update texts set text = ? where id = ?')
+        const stmt = await db.prepare('update texts set title = ?, text = ?, translatedText = ? where id = ?')
         
-        const result = await stmt.run(data.text, rowId)
+        const result = await stmt.run(data.title, data.text, data.translatedText, rowId)
 
+        stmt.finalize()
+        
+        if(result.changes !== 1) return NextResponse.json({ status:true })
 
-        if(result.changes !== 1) return NextResponse.json({ status:false })
-
-        return NextResponse.json({ status:true, rowId })  
+        return NextResponse.json({ status:true, id:rowId, title:data.title })  
 
     } catch (err) {
         
